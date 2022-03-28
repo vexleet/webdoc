@@ -1,0 +1,74 @@
+@font-face {
+    font-family: "Bebas";
+    src: url("/assets/fonts/BebasNeue-Regular.ttf") format("truetype");
+}
+
+.header {
+    height: 100vh;
+    position: relative;
+}
+
+.header > section {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.header > video {
+    height: 100vh;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.header > section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(to bottom right,#000,#000);
+    opacity: .6;
+    z-index: -1;
+}
+
+.header > section h1 {
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #fff;
+    font-family: 'Bebas';
+}
+
+.header > section h3 {
+    font-size: 58px;
+    text-transform: capitalize;
+    color: #fff;
+    font-family: 'Bebas';
+    opacity: 0;
+    /*transform: translateY(500px);*/
+}
+
+.header > .scroll-down {
+    position: absolute;
+    width: 100%;
+    bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.header > .scroll-down p {
+    color: #fff;
+    font-family: sans-serif;
+}
+
+.header > .scroll-down i {
+    color: #fff;
+    font-size: 30px;
+}
