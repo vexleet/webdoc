@@ -28,14 +28,39 @@ anime({
   easing: 'spring(1, 80, 10, 0)'
 })
 
-new Pageable("#fullpage", {
+function lifeImagesAnim() {
+  anime({
+    targets: '.life-images > .image-card-wrapper path',
+    strokeDashoffset: [anime.setDashoffset, 0],
+    easing: 'easeInOutSine',
+    duration: 4500,
+  });
+
+  anime({
+    targets: '.image-card',
+    opacity: [0, 1],
+    delay: anime.stagger(820), // increase delay by 100ms for each elements.
+    rotate: anime.stagger([-15, 15])
+  });
+}
+
+const page = new Pageable("#fullpage", {
   animation: 400,
   delay: 200,
   events: {
     wheel: true,
     mouse: false,
+  },
+  onInit: function(data) {
+    lifeImagesAnim();
+  },
+  onStart: function (data) {
+    if(data === 'life-images') {
+      lifeImagesAnim()
+    }
   }
 });
+
 
 playVideo.addEventListener('click', function () {
   modal.style.display = "block";

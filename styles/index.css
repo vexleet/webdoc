@@ -5,11 +5,18 @@
     src: url("../assets/fonts/BebasNeue-Regular.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: "Hurricane";
+    src: url("../assets/fonts/Hurricane-Regular.ttf") format("truetype");
+}
+
 p {
     font-family: proxima-nova, sans-serif;
     font-weight: 400;
     font-style: normal;
     letter-spacing: 0.5px;
+    font-size: 16px;
+    line-height: 20px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -122,9 +129,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .about-vince section p {
-    font-size: 16px;
     color: #fff;
-    line-height: 20px;
 }
 
 .about-vince > .image-wrapper::after {
@@ -194,4 +199,81 @@ h1, h2, h3, h4, h5, h6 {
 .modal > video {
     margin: 0 auto;
     display: block;
+}
+
+.life-images {
+    background: rgba(17,16,34,1);
+    padding: 20px 0;
+    overflow: hidden;
+}
+
+.life-images > .image-card-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.life-images > .life-images-about {
+    display: flex;
+    width: 700px;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.life-images > .life-images-about h2 {
+    font-size: 60px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 15px;
+    line-height: 50px;
+}
+
+.life-images .image-card {
+    width: fit-content;
+    flex: 0 0 33.333333%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.life-images .image-card img{
+    object-fit: cover;
+    border: 20px solid #fff;
+    border-bottom: 0;
+    width: 200px;
+    height: 200px;
+}
+
+.life-images .image-card div {
+    background: #fff;
+    /*width: 100%;*/
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -5px;
+    width: 240px;
+}
+
+.life-images .image-card p{
+    font-family: 'Hurricane';
+    font-size: 28px;
+}
+
+.life-images > .image-card-wrapper > svg {
+    position: absolute;
+    width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 80px;
+    z-index: 0;
+}
+
+.life-images > .image-card-wrapper > svg path {
+    /*stroke-dasharray: 20;*/
 }
