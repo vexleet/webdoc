@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Bebas";
-    src: url("/assets/fonts/BebasNeue-Regular.ttf") format("truetype");
+    src: url("../assets/fonts/BebasNeue-Regular.ttf") format("truetype");
 }
 
 .header {
