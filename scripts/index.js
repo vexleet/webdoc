@@ -1,3 +1,5 @@
+import PhotoSwipeLightbox from './photoswipe-lightbox.esm.min.js';
+
 const name = document.querySelector('.header .name');
 const subtitle = document.querySelector('.header .subtitle');
 const scrollDown = document.querySelector('.header .scroll-down');
@@ -30,7 +32,7 @@ anime({
 
 function lifeImagesAnim() {
   anime({
-    targets: '.life-images > .image-card-wrapper path',
+    targets: '.life-images > .image-card-wrapper .path',
     strokeDashoffset: [anime.setDashoffset, 0],
     easing: 'easeInOutSine',
     duration: 4500,
@@ -40,7 +42,9 @@ function lifeImagesAnim() {
     targets: '.image-card',
     opacity: [0, 1],
     delay: anime.stagger(820), // increase delay by 100ms for each elements.
-    rotate: anime.stagger([-15, 15])
+    rotate: function () {
+      return anime.random(-15, 15)
+    }
   });
 }
 
@@ -72,3 +76,10 @@ closeModal.addEventListener('click', function () {
   documentaryVideo.pause();
   documentaryVideo.currentTime = 0;
 })
+
+const lightbox = new PhotoSwipeLightbox({
+  gallery: '.image-card-wrapper',
+  children: '.image-card',
+  pswpModule: () => import('./photoswipe.esm.min.js')
+});
+lightbox.init();

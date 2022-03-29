@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles/index.css">
     <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="styles/pageable.min.css">
+    <link rel="stylesheet" href="styles/photoswipe.css">
 </head>
 <body>
 <main id="fullpage">
@@ -48,47 +49,78 @@
             <h2>Lorem ipsum dolor sit amet, consectetur.</h2>
         </section>
 
-        <article class="image-card-wrapper">
+        <article class="pswp-gallery image-card-wrapper">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="49 198.91 730 202.7">
-                <path d="M 92 238 C 125 203 271 248 411 222 C 458 204 645 182 778 224 C 708 316 218 268 161 368 Q 207 430 402 375 Q 593 340 774 385" stroke="#FF0000" stroke-width="1" fill="none" stroke-dasharray="20"/>
+                <path class="path" d="M 92 238 C 125 203 271 248 411 222 C 458 204 645 182 778 224 C 708 316 218 268 161 368 Q 207 430 402 375 Q 593 340 774 385" stroke="#FF0000" stroke-width="2" fill="none" stroke-linejoin="round" stroke-miterlimit="10" />
+                <path class="dashed" d="M 92 238 C 125 203 271 248 411 222 C 458 204 645 182 778 224 C 708 316 218 268 161 368 Q 207 430 402 375 Q 593 340 774 385" stroke="#111022" stroke-width="3" fill="none" stroke-linejoin="round" stroke-miterlimit="10"   stroke-dasharray="20" />
             </svg>
 
-            <section class="image-card">
+            <a
+                class="image-card"
+                data-pswp-src="./assets/images/life-image-1.jpg"
+                data-pswp-width="650"
+                data-pswp-height="565"
+            >
                 <img src="assets/images/life-image-1.jpg" alt="Babyy playing games on his Gaming PC" />
                 <div>
                     <p>12 years old</p>
                 </div>
-            </section>
-            <section class="image-card">
+            </a>
+            <a
+                class="image-card"
+                data-pswp-src="./assets/images/life-image-1.jpg"
+                data-pswp-width="650"
+                data-pswp-height="565"
+            >
                 <img src="assets/images/life-image-1.jpg" alt="Babyy playing games on his Gaming PC" />
                 <div>
                     <p>12 years old</p>
                 </div>
-            </section>
-            <section class="image-card">
+            </a>
+            <a
+                class="image-card"
+                data-pswp-src="./assets/images/life-image-1.jpg"
+                data-pswp-width="650"
+                data-pswp-height="565"
+            >
                 <img src="assets/images/life-image-1.jpg" alt="Babyy playing games on his Gaming PC" />
                 <div>
                     <p>12 years old</p>
                 </div>
-            </section>
-            <section class="image-card">
+            </a>
+            <a
+                class="image-card"
+                data-pswp-src="./assets/images/life-image-1.jpg"
+                data-pswp-width="650"
+                data-pswp-height="565"
+            >
                 <img src="assets/images/life-image-1.jpg" alt="Babyy playing games on his Gaming PC" />
                 <div>
                     <p>12 years old</p>
                 </div>
-            </section>
-            <section class="image-card">
+            </a>
+            <a
+                class="image-card"
+                data-pswp-src="./assets/images/life-image-1.jpg"
+                data-pswp-width="650"
+                data-pswp-height="565"
+            >
                 <img src="assets/images/life-image-1.jpg" alt="Babyy playing games on his Gaming PC" />
                 <div>
                     <p>12 years old</p>
                 </div>
-            </section>
-            <section class="image-card">
+            </a>
+            <a
+                class="image-card"
+                data-pswp-src="./assets/images/life-image-1.jpg"
+                data-pswp-width="650"
+                data-pswp-height="565"
+            >
                 <img src="assets/images/life-image-1.jpg" alt="Babyy playing games on his Gaming PC" />
                 <div>
                     <p>12 years old</p>
                 </div>
-            </section>
+            </a>
         </article>
     </article>
 </main>
@@ -106,6 +138,6 @@
 
 <script src="./scripts/anime.min.js"></script>
 <script src="./scripts/pageable.min.js"></script>
-<script src="scripts/index.js"></script>
+<script src="scripts/index.js" type="module"></script>
 </body>
 </html>

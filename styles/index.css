@@ -239,6 +239,15 @@ h1, h2, h3, h4, h5, h6 {
     flex-direction: column;
     margin-bottom: 15px;
     position: relative;
+    color: #000;
+    text-decoration: none;
+    transition: 0.2s transform linear;
+    cursor: pointer;
+}
+
+.life-images .image-card:hover {
+    transform: scale(1.3)!important;
+    z-index: 20;
 }
 
 .life-images .image-card img{
@@ -265,6 +274,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 28px;
 }
 
+
 .life-images > .image-card-wrapper > svg {
     position: absolute;
     width: 80%;
@@ -274,6 +284,3 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 0;
 }
 
-.life-images > .image-card-wrapper > svg path {
-    /*stroke-dasharray: 20;*/
-}
