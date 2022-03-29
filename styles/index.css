@@ -63,10 +63,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header > section h1 {
-    font-size: 20px;
+    font-size: 120px;
     text-transform: uppercase;
     color: #fff;
     font-family: 'Bebas';
+    overflow: hidden;
+}
+
+.header > section h1 span{
+    display: inline-block;
+}
+
+.header > section h1 span:last-of-type {
+    -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
 }
 
 .header > section h3 {
@@ -126,6 +137,10 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: -0.5px;
     color: #fff;
     margin-bottom: 30px;
+}
+
+.about-vince section h2 span{
+    display: block;
 }
 
 .about-vince section p {
@@ -242,12 +257,20 @@ h1, h2, h3, h4, h5, h6 {
     color: #000;
     text-decoration: none;
     transition: 0.2s transform linear;
+}
+
+.life-images .image-card:nth-child(-n+4) {
+    z-index: 20;
+}
+
+
+.life-images .image-card .image-card-content {
+    transition: 0.2s transform linear;
     cursor: pointer;
 }
 
-.life-images .image-card:hover {
-    transform: scale(1.3)!important;
-    z-index: 20;
+.life-images .image-card .image-card-content:hover {
+    transform: scale(1.3);
 }
 
 .life-images .image-card img{
@@ -258,7 +281,7 @@ h1, h2, h3, h4, h5, h6 {
     height: 200px;
 }
 
-.life-images .image-card div {
+.life-images .image-card .image-about {
     background: #fff;
     /*width: 100%;*/
     height: 50px;
@@ -284,3 +307,29 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 0;
 }
 
+.more-about {
+    background: rgba(17,16,34,1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.more-about h2 {
+    font-size: 60px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.more-about img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    margin: 15px 0;
+}
+
+.more-about p {
+    width: 800px;
+    color: #fff;
+    text-align: center;
+}
