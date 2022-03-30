@@ -11,8 +11,15 @@ const documentaryVideo = document.querySelector('#myModal #documentary')
 let headerHasAnimated = false;
 let aboutHasAnimated = false;
 let lifeImagesHasAnimated = false;
+let moreAboutHasAnimated = false;
+
+const anchors = [...document.querySelectorAll('#fullpage > *')].map((el) => el.offsetTop);
+let index = 0;
 
 (function () {
+  window.scrollTo(0, 0);
+  headerAnim();
+
   function headerAnim() {
     anime({
       targets: '.name span:first-of-type',
@@ -80,7 +87,6 @@ let lifeImagesHasAnimated = false;
     })
   }
 
-
   function lifeImagesAnim() {
     anime({
       targets: '.life-images .life-images-about h2',
@@ -124,63 +130,26 @@ let lifeImagesHasAnimated = false;
       easing: 'easeInOutCubic',
       opacity: [0, 1],
       duration: 800,
-      translateY: [200, 0],
       delay: delay * 2 + 200,
     })
 
     anime({
-      targets: '.more-about p',
+      targets: '.more-about p:first-of-type',
       easing: 'easeInOutCubic',
       opacity: [0, 1],
       duration: 800,
-      translateY: [200, 0],
+      translateY: [150, 0],
       delay: delay * 2,
     })
+    anime({
+      targets: '.more-about p:last-of-type',
+      easing: 'easeInOutCubic',
+      opacity: [0, 1],
+      duration: 800,
+      translateY: [150, 0],
+      delay: delay * 2 + 300,
+    })
   }
-
-  const page = new Pageable("#fullpage", {
-    animation: 400,
-    delay: 200,
-    events: {
-      wheel: true,
-      mouse: false,
-    },
-    onInit: function(data) {
-      if(data.index === 0) {
-        headerAnim();
-        headerHasAnimated = true;
-      }
-      if(data.index === 1) {
-        aboutVinceAnim();
-        aboutHasAnimated = true;
-      }
-      if(data.index === 2) {
-        lifeImagesAnim();
-        lifeImagesHasAnimated = true;
-      }
-      if(data.index === 3) {
-        moreAboutAnim();
-      }
-    },
-    onStart: function (data) {
-      if(data === 'header' && !headerHasAnimated) {
-        headerAnim();
-        headerHasAnimated = true;
-      }
-      if(data === 'about' && !aboutHasAnimated) {
-        aboutVinceAnim();
-        aboutHasAnimated = true;
-      }
-      if(data === 'life-images' && !lifeImagesHasAnimated) {
-        lifeImagesAnim()
-        lifeImagesHasAnimated = true;
-      }
-      if(data === 'more-about') {
-        moreAboutAnim();
-      }
-    }
-  });
-
 
   playVideo.addEventListener('click', function () {
     modal.style.display = "block";
@@ -191,6 +160,54 @@ let lifeImagesHasAnimated = false;
     modal.style.display = "none";
     documentaryVideo.pause();
     documentaryVideo.currentTime = 0;
+  })
+
+  scrollDown.addEventListener('click', function () {
+    page.next();
+  })
+
+  document.addEventListener('scroll', function (e) {
+    e.preventDefault();
+  })
+
+  let isScrolling = false;
+
+  document.addEventListener('wheel', function (e) {
+    let url = location.href;
+
+    if(!isScrolling) {
+      setTimeout(() => {
+        isScrolling = false
+      }, 1000);
+
+      if (e.deltaY < 0) {
+        if (index === 0) {
+          return;
+        }
+
+        window.scrollTo(0, anchors[--index]);
+        isScrolling = true;
+      } else if (e.deltaY > 0) {
+        if (index === anchors.length) {
+          return;
+        }
+
+        window.scrollTo(0, anchors[++index]);
+        isScrolling = true;
+      }
+        if(index === 1 && !aboutHasAnimated) {
+          aboutVinceAnim();
+          aboutHasAnimated = true;
+        }
+        if(index === 2 && !lifeImagesHasAnimated) {
+          lifeImagesAnim();
+          lifeImagesHasAnimated = true;
+        }
+        if(index === 3 && !moreAboutHasAnimated) {
+          moreAboutAnim();
+          moreAboutHasAnimated = true;
+        }
+    }
   })
 
   const lightbox = new PhotoSwipeLightbox({

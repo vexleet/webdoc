@@ -10,6 +10,11 @@
     src: url("../assets/fonts/Hurricane-Regular.ttf") format("truetype");
 }
 
+body, html {
+    overflow: hidden;
+    scroll-behavior: smooth;
+}
+
 p {
     font-family: proxima-nova, sans-serif;
     font-weight: 400;
@@ -107,6 +112,10 @@ h1, h2, h3, h4, h5, h6 {
 .header > .scroll-down i {
     color: #fff;
     font-size: 30px;
+}
+
+#fullpage > * {
+    height: 100vh;
 }
 
 .about-vince {
