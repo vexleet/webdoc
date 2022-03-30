@@ -13,7 +13,7 @@ let aboutHasAnimated = false;
 let lifeImagesHasAnimated = false;
 let moreAboutHasAnimated = false;
 
-const anchors = [...document.querySelectorAll('#fullpage > *')].map((el) => el.offsetTop);
+const anchors = document.querySelectorAll('#fullpage > *')
 let index = 0;
 
 (function () {
@@ -52,6 +52,7 @@ let index = 0;
       targets: scrollDown,
       translateY: 15,
       direction: 'alternate',
+      opacity: [1, 1],
       loop: true,
       easing: 'spring(1, 80, 10, 0)',
     })
@@ -162,52 +163,36 @@ let index = 0;
     documentaryVideo.currentTime = 0;
   })
 
-  scrollDown.addEventListener('click', function () {
-    page.next();
-  })
+  function callbackFunc(entries, observer)
+  {
+    entries.forEach(entry => {
+      const id = entry.target.id;
 
-  document.addEventListener('scroll', function (e) {
-    e.preventDefault();
-  })
-
-  let isScrolling = false;
-
-  document.addEventListener('wheel', function (e) {
-    let url = location.href;
-
-    if(!isScrolling) {
-      setTimeout(() => {
-        isScrolling = false
-      }, 1000);
-
-      if (e.deltaY < 0) {
-        if (index === 0) {
-          return;
-        }
-
-        window.scrollTo(0, anchors[--index]);
-        isScrolling = true;
-      } else if (e.deltaY > 0) {
-        if (index === anchors.length) {
-          return;
-        }
-
-        window.scrollTo(0, anchors[++index]);
-        isScrolling = true;
+      if(id === 'about' && !aboutHasAnimated && entry.isIntersecting) {
+        aboutVinceAnim();
+        aboutHasAnimated = true;
       }
-        if(index === 1 && !aboutHasAnimated) {
-          aboutVinceAnim();
-          aboutHasAnimated = true;
-        }
-        if(index === 2 && !lifeImagesHasAnimated) {
-          lifeImagesAnim();
-          lifeImagesHasAnimated = true;
-        }
-        if(index === 3 && !moreAboutHasAnimated) {
-          moreAboutAnim();
-          moreAboutHasAnimated = true;
-        }
-    }
+      if(id === 'life-images' && !lifeImagesHasAnimated && entry.isIntersecting) {
+        lifeImagesAnim();
+        lifeImagesHasAnimated = true;
+      }
+      if(id === 'more-about' && !moreAboutHasAnimated && entry.isIntersecting) {
+        moreAboutAnim();
+        moreAboutHasAnimated = true;
+      }
+    });
+  }
+
+  let options = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.35
+  };
+
+  let observer = new IntersectionObserver(callbackFunc, options);
+
+  anchors.forEach((el) => {
+    observer.observe(el);
   })
 
   const lightbox = new PhotoSwipeLightbox({

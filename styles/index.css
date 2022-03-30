@@ -11,7 +11,6 @@
 }
 
 body, html {
-    overflow: hidden;
     scroll-behavior: smooth;
 }
 
@@ -77,6 +76,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .header > section h1 span{
     display: inline-block;
+    opacity: 0;
 }
 
 .header > section h1 span:last-of-type {
@@ -102,6 +102,7 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    opacity: 0;
 }
 
 .header > .scroll-down p {
@@ -150,10 +151,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .about-vince section h2 span{
     display: block;
+    opacity: 0;
 }
 
 .about-vince section p {
     color: #fff;
+    opacity: 0;
 }
 
 .about-vince > .image-wrapper::after {
@@ -182,6 +185,7 @@ h1, h2, h3, h4, h5, h6 {
     background: #fff;
     border-radius: 100px;
     cursor: pointer;
+    opacity: 0;
 }
 
 .modal {
@@ -252,6 +256,7 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     margin-bottom: 15px;
     line-height: 50px;
+    opacity: 0;
 }
 
 .life-images .image-card {
@@ -266,6 +271,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #000;
     text-decoration: none;
     transition: 0.2s transform linear;
+    opacity: 0;
 }
 
 .life-images .image-card:nth-child(-n+4) {
@@ -316,6 +322,11 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 0;
 }
 
+.life-images > .image-card-wrapper > svg {
+    stroke-dashoffset: 2000;
+    stroke-dasharray: 2000;
+}
+
 .more-about {
     background: rgba(17,16,34,1);
     display: flex;
@@ -328,6 +339,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 60px;
     color: #fff;
     margin-bottom: 10px;
+    opacity: 0;
 }
 
 .more-about img {
@@ -335,10 +347,12 @@ h1, h2, h3, h4, h5, h6 {
     height: 400px;
     object-fit: cover;
     margin: 15px 0;
+    opacity: 0;
 }
 
 .more-about p {
     width: 800px;
     color: #fff;
     text-align: center;
+    opacity: 0;
 }
