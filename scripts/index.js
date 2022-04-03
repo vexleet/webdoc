@@ -3,15 +3,21 @@ import PhotoSwipeLightbox from './photoswipe-lightbox.esm.min.js';
 const name = document.querySelector('.header .name');
 const subtitle = document.querySelector('.header .subtitle');
 const scrollDown = document.querySelector('.header .scroll-down');
-const playVideo = document.getElementById('play-video');
+const playVideo = document.querySelectorAll('.play-video');
 const modal = document.getElementById("myModal");
 const closeModal = document.querySelector('#myModal .close');
 const documentaryVideo = document.querySelector('#myModal #documentary')
 
-let headerHasAnimated = false;
 let aboutHasAnimated = false;
 let lifeImagesHasAnimated = false;
 let moreAboutHasAnimated = false;
+let accommodationsHasAnimated = false;
+let contactHasAnimated = false;
+
+const videoUrls = {
+  welcome: `<iframe width="70%" height="550" src="https://www.youtube.com/embed/fSNU6uW0eI0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`,
+  accommodations: `<iframe width="70%" height="550" src="https://www.youtube.com/embed/AzYMZmSud_Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+}
 
 const anchors = document.querySelectorAll('#fullpage > *')
 let index = 0;
@@ -59,12 +65,12 @@ let index = 0;
   }
 
   function aboutVinceAnim() {
-    const delayStagger = 600;
+    const delayStagger = 800;
     anime({
-      targets: '.about-vince h2 span',
+      targets: '.about-vince h2',
       translateX: [-400, 0],
       opacity: [0, 1],
-      delay: anime.stagger(delayStagger),
+      delay: delayStagger,
       easing: 'easeOutCubic',
       duration: 1000,
     })
@@ -73,16 +79,16 @@ let index = 0;
       targets: '.about-vince .about-wrapper p',
       translateX: [-400, 0],
       opacity: [0, 1],
-      delay: delayStagger * 2 + 200,
+      delay: delayStagger + 200,
       easing: 'easeOutCubic',
       duration: 1000,
     })
 
     anime({
-      targets: '.about-vince #play-video',
+      targets: '.about-vince .play-video',
       translateY: [200, 0],
       opacity: [0, 1],
-      delay: delayStagger * 2 + 500,
+      delay: delayStagger + 500,
       easing: 'easeOutExpo',
       duration: 1000,
     })
@@ -90,11 +96,12 @@ let index = 0;
 
   function lifeImagesAnim() {
     anime({
-      targets: '.life-images .life-images-about h2',
+      targets: '.life-images .life-images-about *',
       easing: 'easeInOutCubic',
       opacity: [0, 1],
       duration: 800,
       translateY: [100, 0],
+      delay: anime.stagger(200),
     })
 
     anime({
@@ -112,6 +119,15 @@ let index = 0;
       rotate: function () {
         return anime.random(-15, 15)
       }
+    });
+
+    anime({
+      targets: '.life-images .destiny',
+      easing: 'easeInOutCubic',
+      opacity: [0, 1],
+      duration: 800,
+      translateY: [100, 0],
+      delay: 750 * 6,
     });
   }
 
@@ -152,15 +168,71 @@ let index = 0;
     })
   }
 
-  playVideo.addEventListener('click', function () {
-    modal.style.display = "block";
-    documentaryVideo.play();
-  });
+  function accommodationsAnim() {
+    const delayStagger = 800;
+    anime({
+      targets: '.accommodations h2',
+      translateX: [400, 0],
+      opacity: [0, 1],
+      delay: delayStagger,
+      easing: 'easeOutCubic',
+      duration: 1000,
+    })
+
+    anime({
+      targets: '.accommodations .about-wrapper p, .accommodations .about-wrapper a',
+      translateX: [400, 0],
+      opacity: [0, 1],
+      delay: delayStagger + 200,
+      easing: 'easeOutCubic',
+      duration: 1000,
+    })
+
+    anime({
+      targets: '.accommodations .play-video',
+      translateY: [-200, 0],
+      opacity: [0, 1],
+      delay: delayStagger + 500,
+      easing: 'easeOutExpo',
+      duration: 1000,
+    })
+  }
+
+  function contactAnim() {
+    const delayStagger = 300;
+    anime({
+      targets: '.contact *:not(i)',
+      translateY: [400, 0],
+      opacity: [0, 1],
+      delay: anime.stagger(delayStagger),
+      easing: 'easeOutCubic',
+      duration: 1000,
+    });
+    anime({
+      targets: '.contact .social-media i',
+      translateY: [400, 0],
+      opacity: [0, 1],
+      delay: delayStagger * 4 + delayStagger,
+      easing: 'easeOutCubic',
+      duration: 1000,
+    })
+  }
+
+  playVideo.forEach((play) => {
+    play.addEventListener('click', function (e) {
+      const videoUrl = e.target.getAttribute('data-video-url');
+
+      modal.insertAdjacentHTML('beforeend', videoUrls[videoUrl])
+
+      modal.style.display = "flex";
+    });
+
+  })
+
 
   closeModal.addEventListener('click', function () {
+    document.querySelector('.modal iframe').remove();
     modal.style.display = "none";
-    documentaryVideo.pause();
-    documentaryVideo.currentTime = 0;
   })
 
   function callbackFunc(entries, observer)
@@ -179,6 +251,14 @@ let index = 0;
       if(id === 'more-about' && !moreAboutHasAnimated && entry.isIntersecting) {
         moreAboutAnim();
         moreAboutHasAnimated = true;
+      }
+      if(id === 'accommodations' && !accommodationsHasAnimated && entry.isIntersecting) {
+        accommodationsAnim();
+        accommodationsHasAnimated = true;
+      }
+      if(id === 'contact' && !contactHasAnimated && entry.isIntersecting) {
+        contactAnim();
+        contactHasAnimated = true;
       }
     });
   }
