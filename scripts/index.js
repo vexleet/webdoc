@@ -17,7 +17,8 @@ let travelHasAnimated = false;
 
 const videoUrls = {
   welcome: `<iframe width="70%" height="550" src="https://www.youtube.com/embed/fSNU6uW0eI0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`,
-  accommodations: `<iframe width="70%" height="550" src="https://www.youtube.com/embed/AzYMZmSud_Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+  accommodations: `<iframe width="70%" height="550" src="https://www.youtube.com/embed/AzYMZmSud_Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`,
+  'travel-aarhus': `<iframe width="70%" height="550" src="https://www.youtube.com/embed/iq38T4EAFok" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
 }
 
 const anchors = document.querySelectorAll('#fullpage > *')
@@ -128,7 +129,7 @@ let index = 0;
       opacity: [0, 1],
       duration: 800,
       translateY: [100, 0],
-      delay: 750 * 6,
+      delay: 750 * 5 + 200,
     });
   }
 
