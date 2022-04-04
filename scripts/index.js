@@ -13,6 +13,7 @@ let lifeImagesHasAnimated = false;
 let moreAboutHasAnimated = false;
 let accommodationsHasAnimated = false;
 let contactHasAnimated = false;
+let travelHasAnimated = false;
 
 const videoUrls = {
   welcome: `<iframe width="70%" height="550" src="https://www.youtube.com/embed/fSNU6uW0eI0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`,
@@ -159,7 +160,7 @@ let index = 0;
       delay: delay * 2,
     })
     anime({
-      targets: '.more-about p:last-of-type',
+      targets: '.more-about .anim',
       easing: 'easeInOutCubic',
       opacity: [0, 1],
       duration: 800,
@@ -198,10 +199,40 @@ let index = 0;
     })
   }
 
+  function travelAarhusAnim() {
+    const delayStagger = 800;
+    anime({
+      targets: '.travel-aarhus h2',
+      translateX: [-400, 0],
+      opacity: [0, 1],
+      delay: delayStagger,
+      easing: 'easeOutCubic',
+      duration: 1000,
+    })
+
+    anime({
+      targets: '.travel-aarhus .about-wrapper p',
+      translateX: [-400, 0],
+      opacity: [0, 1],
+      delay: delayStagger + 200,
+      easing: 'easeOutCubic',
+      duration: 1000,
+    })
+
+    anime({
+      targets: '.travel-aarhus .play-video',
+      translateY: [200, 0],
+      opacity: [0, 1],
+      delay: delayStagger + 500,
+      easing: 'easeOutExpo',
+      duration: 1000,
+    })
+  }
+
   function contactAnim() {
     const delayStagger = 300;
     anime({
-      targets: '.contact *:not(i)',
+      targets: '.contact *:not(a, i)',
       translateY: [400, 0],
       opacity: [0, 1],
       delay: anime.stagger(delayStagger),
@@ -209,7 +240,7 @@ let index = 0;
       duration: 1000,
     });
     anime({
-      targets: '.contact .social-media i',
+      targets: '.contact .social-media a',
       translateY: [400, 0],
       opacity: [0, 1],
       delay: delayStagger * 4 + delayStagger,
@@ -259,6 +290,10 @@ let index = 0;
       if(id === 'contact' && !contactHasAnimated && entry.isIntersecting) {
         contactAnim();
         contactHasAnimated = true;
+      }
+      if(id === 'travel-aarhus' && !travelHasAnimated && entry.isIntersecting) {
+        travelAarhusAnim();
+        travelHasAnimated = true;
       }
     });
   }
